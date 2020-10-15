@@ -1,24 +1,78 @@
-# README
+# READEME
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Colum    | Type   | Options     |
+| -------- | ------ | ----------- |
+| nickname | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| name     | string | null: false |
+| birthday | date	  | null: false |
 
-* Ruby version
+### Association
+  has_many :comments
 
-* System dependencies
 
-* Configuration
+## items テーブル
+  
+  belongs_to :user
 
-* Database creation
+| Colum        | Type          | Options                        |
+| ------------ | ------------- | -------------------------------|
+| title        | string        | null: false                    |
+| description  | text          | null: false                    |
+| category     | integer       | null: false                    |
+| status       | integer       | null: false                    |
+| burden       | integer       | null: false                    |
+| shippingarea | integer       | null: false                    |
+| daystoship   | integer       | null: false                    |
+| image        | ActiveStorage |  |                             
+| user         | references    | null: false, foreign_key: true |
+   
 
-* Database initialization
+   ### Association
+   belongs_to :user
 
-* How to run the test suite
+## comments テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Colum | Type       | Options                        |
+| ----- | ---------- | -------------------------------|
+| text  | text       | null: false                    |
+| user  | references | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
 
-* Deployment instructions
 
-* ...
+  ### Association
+  belongs_to :user
+  belongs_to :item
+
+## buys テーブル
+
+| Colum | Type       | Options                        |
+| ----- | ---------- | -------------------------------|
+| curd  | integer    | null: false                    |
+| user  | references | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
+
+
+  ### Association
+  belongs_to :user
+  belongs_to :item
+
+## address テーブル
+
+  
+
+| Colum        | Type    | Options     |
+| ------------ | ------- | ------------|
+| post         |  string | null: false |
+| prefectures  | integer | null: false |
+| city         |  text   | null: false |
+| address      |  text   | null: false |
+| buildingname |  text   |             |
+| tel          |  text   | null: false |
+
+  ### Association
+  belongs_to :user
+  belongs_to :item
