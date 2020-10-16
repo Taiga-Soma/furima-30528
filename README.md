@@ -28,7 +28,7 @@
 | category_id     | integer       | null: false                    |
 | status_id       | integer       | null: false                    |
 | burden_id       | integer       | null: false                    |
-| shippingarea_id | integer       | null: false                    |
+| prefectures_id | integer       | null: false                     |
 | daystoship_id   | integer       | null: false                    |
 | user            | references    | null: false, foreign_key: true |
    
