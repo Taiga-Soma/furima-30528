@@ -9,8 +9,8 @@
 | password        | string | null: false |
 | firstname       | string | null: false |
 | lastname        | string | null: false |
-| firstname(ruby) | string | null: false |
-| lastname(ruby)  | string | null: false |
+| first_name_kana | string | null: false |
+| last_name_kana  | string | null: false |
 | birthday        | date	 | null: false |
 
 ### Association
@@ -25,6 +25,7 @@
 | Colum           | Type          | Options                        |
 | --------------- | ------------- | -------------------------------|
 | title           | string        | null: false                    |
+| price           | string        | null: false                    |
 | description     | text          | null: false                    |
 | category_id     | integer       | null: false                    |
 | status_id       | integer       | null: false                    |
@@ -36,7 +37,8 @@
 
    ### Association
    belongs_to :user
-   belongs_to :buys
+   has_one :buys
+
 ## comments テーブル
 
 | Colum | Type       | Options                        |
@@ -55,7 +57,6 @@
 
 | Colum | Type       | Options                        |
 | ----- | ---------- | -------------------------------|
-| curd  | integer    | null: false                    |
 | user  | references | null: false, foreign_key: true |
 | item  | references | null: false, foreign_key: true |
 
@@ -66,14 +67,15 @@
 
 ## address テーブル
 
-| Colum          | Type    | Options     |
-| -------------- | ------- | ------------|
-| post_id        | string  | null: false |
-| prefectures_id | integer | null: false |
-| city           | string  | null: false |
-| address        | string  | null: false |
-| buildingname   | string  |             |
-| tel            | string  | null: false |
+| Colum          | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post_id        | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| city           | string     | null: false                    |
+| address        | string     | null: false                    |
+| buildingname   | string     |                                |
+| tel            | string     | null: false                    |
+| buy            | references | null: false, foreign_key: true |
 
   ### Association
   beongs_to :buys
