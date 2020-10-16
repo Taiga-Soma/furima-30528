@@ -19,25 +19,23 @@
   has_many :items
 
 ## items テーブル
-  
-  belongs_to :user
 
 | Colum           | Type          | Options                        |
 | --------------- | ------------- | -------------------------------|
 | title           | string        | null: false                    |
-| price           | string        | null: false                    |
+| price           | integer        | null: false                    |
 | description     | text          | null: false                    |
 | category_id     | integer       | null: false                    |
 | status_id       | integer       | null: false                    |
 | burden_id       | integer       | null: false                    |
 | shippingarea_id | integer       | null: false                    |
-| daystoship_id   | integer       | null: false                    |                           
+| daystoship_id   | integer       | null: false                    |
 | user            | references    | null: false, foreign_key: true |
    
 
    ### Association
    belongs_to :user
-   has_one :buys
+   has_one :buy
 
 ## comments テーブル
 
@@ -51,7 +49,6 @@
   ### Association
   belongs_to :user
   belongs_to :item
-  has_one :address
 
 ## buys テーブル
 
@@ -64,6 +61,7 @@
   ### Association
   belongs_to :user
   belongs_to :item
+  has_one :address
 
 ## address テーブル
 
