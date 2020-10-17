@@ -51,6 +51,12 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
+      it 'passwordは半角英数字混合での入力でないと登録できない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
       it 'paawordが存在してもpassword_confirmationがない場合は登録できない' do
         @user.password_confirmation = ''
         @user.valid?
@@ -70,10 +76,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Firstname can't be blank")
       end
 
+      it 'firstnameは全角での入力出ないと登録できない' do
+        @user.firstname = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname is invalid")
+      end
+
       it 'lastnameが空だと登録できない' do
         @user.lastname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Lastname can't be blank")
+      end
+
+      it 'lastnameは全角での入力出ないと登録できない' do
+        @user.lastname = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Lastname is invalid")
       end
 
       it 'first_name_kanaが空だと登録できない' do
@@ -82,10 +100,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
+      it 'first_name_kanaは全角（カタカナ）での入力でないと登録できない' do
+        @user.first_name_kana = 'aaa, 漢字, ひらがな'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
       it 'last_name_kanaが空だと登録できない' do
         @user.last_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+      end
+
+      it 'Last_name_kanaは全角（カタカナ）での入力でないと登録できない' do
+        @user.last_name_kana = 'aaa, 漢字, ひらがな'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
 
       it 'birthdayが空だと登録できない' do
