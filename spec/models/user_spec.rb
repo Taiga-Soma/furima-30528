@@ -86,6 +86,11 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
 
+      it "birthdayが空だと登録できない" do
+        @user.birthday = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+      end
     end
   end
 end
