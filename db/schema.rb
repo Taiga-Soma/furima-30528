@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_033522) do
+ActiveRecord::Schema.define(version: 2020_10_17_113856) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 2020_10_19_033522) do
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "text", null: false
-    t.integer "genre_id", null: false
+    t.integer "category_id", null: false
+    t.integer "status_id", null: false
+    t.integer "burden_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "daystoship_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status_id"
-    t.integer "burden_id"
-    t.integer "prefectures_id"
-    t.integer "daystoship_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_033522) do
     t.integer "category_id"
     t.integer "status_id"
     t.integer "burden_id"
-    t.integer "prefectures_id"
+    t.integer "prefecture_id"
     t.integer "daystoship_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
