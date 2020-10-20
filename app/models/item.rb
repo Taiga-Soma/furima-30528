@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
   validates :title
-  validates :price
+  validates :price, numericality: { greater_than_or_equal_to: 300 , less_than_or_equal_to: 9_999_999 }
   validates :description
   validates :category_id
   validates :status_id
