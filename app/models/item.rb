@@ -4,15 +4,15 @@ class Item < ApplicationRecord
   has_one_attached :image, dependent: :destroy
 
   with_options presence: true do
-  validates :title
-  validates :price, numericality: { greater_than_or_equal_to: 300 , less_than_or_equal_to: 9_999_999 }
-  validates :description
-  validates :category_id
-  validates :status_id
-  validates :burden_id
-  validates :prefecture_id
-  validates :daystoship_id
-  validates :image
+    validates :title
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :description
+    validates :category_id
+    validates :status_id
+    validates :burden_id
+    validates :prefecture_id
+    validates :daystoship_id
+    validates :image
   end
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
