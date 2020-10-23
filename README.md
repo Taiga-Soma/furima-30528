@@ -35,7 +35,7 @@
 
    ### Association
    belongs_to :user
-   has_one :buy
+   has_one :order
 
 ## comments テーブル
 
@@ -50,7 +50,7 @@
   belongs_to :user
   belongs_to :item
 
-## buys テーブル
+## order テーブル
 
 | Colum | Type       | Options                        |
 | ----- | ---------- | -------------------------------|
@@ -73,7 +73,7 @@
 | address        | string     | null: false                    |
 | buildingname   | string     |                                |
 | tel            | string     | null: false                    |
-| buy            | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
   ### Association
-  belongs_to :buy
+  belongs_to :order
