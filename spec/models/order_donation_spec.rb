@@ -78,3 +78,4 @@ RSpec.describe OrderDonation, type: :model do
     end
   end
 end
+
