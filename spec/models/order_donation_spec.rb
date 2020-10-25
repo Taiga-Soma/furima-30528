@@ -6,7 +6,7 @@ RSpec.describe OrderDonation, type: :model do
     @item = FactoryBot.create(:item, user_id: @seller.id)
     @buyer = FactoryBot.create(:user)
     @order = FactoryBot.build(:OrderDonation, user_id: @buyer.id, item_id: @item.id)
-    sleep(3)
+    sleep(1)
   end
 
   describe '商品購入機能' do
@@ -38,6 +38,12 @@ RSpec.describe OrderDonation, type: :model do
         @order.prefecture_id = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it 'id=1を選択したときは購入できない' do
+        @order.prefecture_id = 1
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it 'cityが空のときは購入できない' do
