@@ -140,7 +140,7 @@
 }
 
 .buy-btn {
-  width: 50%;
+  width: fit-content;
   margin: 0 auto;
   margin-top: 50px;
 }
@@ -150,7 +150,8 @@
   background: #ea352d;
   border: 1px solid #ea352d;
   color: #fff;
-  line-height: 48px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  padding: 2vh 10vw;
 }

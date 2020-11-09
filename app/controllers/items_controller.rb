@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
+
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -19,6 +20,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
@@ -40,13 +43,15 @@ class ItemsController < ApplicationController
     end
   end
 
+
   private
 
   def item_params
-    params.require(:item).permit(:title, :price, :description, :category_id, :status_id, :burden_id, :prefecture_id, :daystoship_id, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:title, :price, :description, :category_id, :status_id, :burden_id, :prefecture_id, :daystoship_id, images: []).merge(user_id: current_user.id)
   end
 
   def set_item
     @item = Item.find(params[:id])
   end
+
 end

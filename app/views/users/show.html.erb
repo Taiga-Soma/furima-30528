@@ -1,0 +1,78 @@
+<%= render "shared/second-header"%>
+<div class="AccountPage">
+  <div class='AccountPage-main'>
+    <h1 class="AccountPage__title">マイページ</h1>
+    <br>
+    <div class='title-form'>
+      <h1 class = "title-text">
+        ●カード情報
+      </h1>
+      <br>
+    </div>
+    <div class ="card-form">
+      <h1 class="table__card">
+        【カード番号】
+      </h1>
+        <p class ="table__number">
+          <%= "**** **** **** " + @card[:last4] %>
+        <%# カード番号の下4桁を取得 %>
+        </p>
+    </div>
+      <br>
+    <div class ="day-form">
+      <h1 class="table__day">
+      【有効期限】
+      </h1>
+        <p class = "table__day2">
+          <%= @card[:exp_month] %>
+          <%# 有効期限の「月」を取得 %>
+          /
+          <%= @card[:exp_year] %>
+        <%# 有効期限の「年」を取得 %>
+        </p>
+    </div>
+      <br>
+      <br>
+    <div class="user-form">
+      <h1 class ="title-text">
+        ●ユーザー情報
+      </h1>
+      <br>
+    </div>
+    <%= form_for(current_user) do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      <div class= "nickname-form">
+        <h1 class = "table__user">
+           <%= f.label :【ニックネーム】 %>
+        </h1>
+           <p class ="table__user2">
+             <%= f.text_field :nickname, autofocus: true %>
+           </p>
+      </div>
+      <div class = "email-form">
+        <h1 class = "table__email">
+          <%= f.label :【メールアドレス】 %>
+        </h1>
+          <p class ="table__email2">
+           <%= f.email_field :email %>
+          </p>
+      </div>
+          <br>
+      <div class = "button">
+        <div class = "table__button">
+          <%= f.submit "更新する" %>
+        </div>
+      </div>
+       <div class = "logout-form">
+          <h1 class = "table__log">
+           <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+          </h1>
+          <p class ="table__log2">
+           <%= link_to "商品一覧へ戻る", root_path%>
+          </p>
+        </div>
+    <% end %>
+  </div>
+ </div>
+</div>
+<%= render "shared/second-footer"%>

@@ -15,7 +15,10 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '8f95770654da3db09992f0c024f471685790a55ea17b858aa94f1e9887bb7d110f24e1b40a9e98afbd137ae242d54c6f8d268322dca66f7be0e19b8643f54f1b'
-
+  config.omniauth :facebook,ENV['FACEBOOK_CLIENT_ID'],ENV['FACEBOOK_CLIENT_SECRET']
+  config.omniauth :google_oauth2,ENV['GOOGLE_CLIENT_ID'],ENV['GOOGLE_CLIENT_SECRET']
+  config.omniauth :line,ENV['LINE_CLIENT_ID'],ENV['LINE_CLIENT_SECRET']
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], callback_url: "http://ef6cae7ae553.ngrok.io/oauth/callback"
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'

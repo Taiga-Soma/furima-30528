@@ -1,6 +1,9 @@
 const pay = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
+  
+  console.log("ok")
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     
@@ -8,30 +11,31 @@ const pay = () => {
     const formData = new FormData(formResult);
 
     const card = {
-      number: formData.get("order_donation[number]"),
-      cvc: formData.get("order_donation[cvc]"),
-      exp_month: formData.get("order_donation[exp_month]"),
-      exp_year: `20${formData.get("order_donation[exp_year]")}`,
+      number: formData.get("number"),
+      cvc: formData.get("cvc"),
+      exp_month: formData.get("exp_month"),
+      exp_year: `20${formData.get("exp_year")}`,
     };
-    console.log(card)
+
     Payjp.createToken(card, (status, response) => {
-      console.log(response)
+      
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='order_donation[token]' type="hidden"> `;
+        const tokenObj = `<input value=${token} type="hidden" name='card_token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
         console.log("OK")
       }else{
         console.log("NG")
       }
 
-      document.getElementById("card-number").removeAttribute("class", "input-default");
-      document.getElementById("card-cvc").removeAttribute("class","input-default");
-      document.getElementById("card-exp-month").removeAttribute("class", "input-expiration-date");
-      document.getElementById("card-exp-year").removeAttribute("class","input-expiration-date");
+      // document.getElementById("number").removeAttribute("name");
+      // document.getElementById("cvc").removeAttribute("name");
+      // document.getElementById("exp_month").removeAttribute("name");
+      // document.getElementById("exp_year").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
+      document.getElementById("charge-form").reset();
     });
   });
 };
