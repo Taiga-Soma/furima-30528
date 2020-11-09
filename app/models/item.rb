@@ -2,7 +2,9 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
   has_one :address
-  has_one_attached :image, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
+  has_one :item_order
+  has_many :comments
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -20,7 +22,7 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :prefecture_id
     validates :daystoship_id
-    validates :image
+    validates :images
   end
 
   validates :category_id, :status_id, :burden_id, :prefecture_id, :daystoship_id, numericality: { other_than: 1 }

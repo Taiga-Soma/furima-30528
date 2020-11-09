@@ -4,11 +4,12 @@ RSpec.describe Item, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: @user.id)
+    sleep 5
   end
 
   describe '商品出品機能' do
     context '新規出品がうまくいくとき' do
-      it 'imageとtitleとpriceとdescription_id、category_idとstatus_idとburden_idとprefecture_idとdaystoship_idが存在すれば出品できる' do
+      it 'imagesとtitleとpriceとdescription_id、category_idとstatus_idとburden_idとprefecture_idとdaystoship_idが存在すれば出品できる' do
         expect(@item).to be_valid
       end
     end
@@ -110,10 +111,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Daystoship must be other than 1')
       end
 
-      it 'imageが空だと出品できない' do
-        @item.image = nil
+      it 'imagesが空だと出品できない' do
+        @item.images = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Images can't be blank")
       end
     end
   end

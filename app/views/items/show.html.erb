@@ -7,7 +7,7 @@
       <%= @item.title %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
+      <%= image_tag @item.images[0] ,class:"item-box-img" %>
       
       <% if @item.order.present? %>
       <div class='sold-out'>
@@ -32,7 +32,7 @@
         <%= link_to '削除', item_path(@item.id), method: :delete,    class:'item-destroy' %>
       <% elsif @item.order.present? %>
       <% else %>
-        <%= link_to '購入画面に進む', item_orders_path(@item.id),class:"item-red-btn"%>
+        <%= link_to '購入手続きへ', item_orders_path(@item.id),class:"item-red-btn"%>
       <% end %>
     <% end %>
     <div class="item-explain-box">
@@ -80,8 +80,8 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <%= form_with(model: [@item, @comment], url: item_comments_path(@item.id), local: true) do |f| %>
+      <%= f.text_area :text, class:"comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
@@ -89,10 +89,22 @@
       </p>
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+        <span>コメントする<span> 
       </button>
-    </form>
+    <% end %>
+    
+   <ul id='comments'>
+      <% @comments.reverse_each do |comment| %>
+        <div class="comments_list">
+          <li> <%=comment.user.nickname %> : <%= comment.text %> </li>
+          
+        </div>
+      <% end %>
+    </ul>
   </div>
+    
+  
+  
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
