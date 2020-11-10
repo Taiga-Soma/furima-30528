@@ -66,7 +66,6 @@ class OrdersController < ApplicationController
   def set_pay
    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
    customer_token = current_user.card.customer_token
-   binding.pry
    Payjp::Charge.create(
       amount: @item.price,        # 商品の値段
       customer: customer_token,   # カードトークン
