@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   end
     root to: 'items#index'
     resources :items do
-      resources :orders, only:[:index, :create]
+      resources :orders, only:[:index, :create, :order]
       post 'order', on: :member
+      # resources :items, only: :order do
+      # post 'order', on: :member
       resources :comments, only: :create
     end
   resources :users, only:[:show, :edit, :update]

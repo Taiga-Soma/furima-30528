@@ -22,7 +22,7 @@ class CardsController < ApplicationController
     if card.save
       redirect_to root_path
     else
-      render action: "new" # カード登録画面
+        redirect_to action: "new" # カード登録画面
     end
   end
 end

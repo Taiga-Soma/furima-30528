@@ -13,8 +13,8 @@ class OrderDonation
   
   # ウィザード形式で事前にユーザー情報を登録しているため
 
-  # def save
-  #   order = Order.create(user_id: user_id, item_id: item_id)
-  #   Address.create!(post_id: post_id, prefecture_id: prefecture_id, city: city, address: address, buildingname: buildingname, tel: tel, order_id: order.id, user_id: user_id)
-  # end
+  def save
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create!(post_id: post_id, prefecture_id: prefecture_id, city: city, address: address, buildingname: buildingname, tel: tel, order_id: order.id, user_id: user_id)
+  end
 end
