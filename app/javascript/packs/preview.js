@@ -1,7 +1,7 @@
 if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
   document.addEventListener('DOMContentLoaded', function() {
-    const ImageList = document.getElementById('item-box-img')
-
+    const ImageList = document.getElementById('item-box-img');
+    console.log ("test") 
      // 選択した画像を表示する関数
      const createImageHTML = (blob) => {
       // 画像を表示するためのdiv要素を生成
@@ -14,9 +14,10 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
      const blobImage = document.createElement('img')
      blobImage.setAttribute('src', blob)
 
+    //  ファイル選択ボタンを生成
      const inputHTML = document.createElement('input')
-     inputHTML.setAttribute('id', `message_image_${imageElementNum}`)
-     inputHTML.setAttribute('name', 'message[images][]')
+     inputHTML.setAttribute('id', `item-image${imageElementNum}`)
+     inputHTML.setAttribute('name', 'item[images][]')
      inputHTML.setAttribute('type', 'file')
 
      // 生成したHTMLの要素をブラウザに表示させる
@@ -29,21 +30,28 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       blob = window.URL.createObjectURL(file);
 
       createImageHTML(blob)
-    })
-   };
 
-    document.getElementById('item-image').addEventListener('change', function(e){
+      // const imageContent = document.querySelector('img');
+     
+      // const file = e.target.files[0];
+      // const blob = window.URL.createObjectURL(file);
+
+      
+     })
+    }
+
+    document.getElementById('item-image').addEventListener('change', (e) => {
       let file = e.target.files[0];
       let blob = window.URL.createObjectURL(file);
 
       createImageHTML(blob)
 
-      // プレビューの画像サイズを指定
-      blobImage.setAttribute('src', blob);
-      blobImage.setAttribute('height', 200);
+    // // プレビューの画像サイズを指定
+    // blobImage.setAttribute('src', blob)
+    // blobImage.setAttribute('height', 200)
 
-      imageElement.appendChild(blobImage);
-      ImageList.appendChild(imageElement);
-   });
+    // imageElement.appendChild(blobImage)
+    // ImageList.appendChild(imageElement)
+    });
   });
 }

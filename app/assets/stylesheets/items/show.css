@@ -26,12 +26,12 @@
 }
 
 .item-box-img {
-  height: 50vh;
-  width: 60vw;
+  width: fit-content; 
   min-height: 500px;
-  background-color: rgb(205, 202, 202);
-  object-fit: contain;
+  object-fit: none;
 }
+
+
 
 .item-price-box {
   margin: 25px 0px;
