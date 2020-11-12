@@ -18,7 +18,7 @@ Devise.setup do |config|
   config.omniauth :facebook,ENV['FACEBOOK_CLIENT_ID'],ENV['FACEBOOK_CLIENT_SECRET']
   config.omniauth :google_oauth2,ENV['GOOGLE_CLIENT_ID'],ENV['GOOGLE_CLIENT_SECRET']
   config.omniauth :line,ENV['LINE_CLIENT_ID'],ENV['LINE_CLIENT_SECRET']
-  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], callback_url: "http://ef6cae7ae553.ngrok.io/oauth/callback"
+  config.omniauth :twitter,ENV['TWITTER_CONSUMER_KEY'],ENV['TWITTER_CONSUMER_SECRET'],callback_url:"http://127.0.0.1:3000/users/auth/twitter/callback"
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
