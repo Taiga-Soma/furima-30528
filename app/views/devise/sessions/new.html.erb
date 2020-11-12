@@ -8,10 +8,15 @@
     </h1>
   </div>
   <div class='login-flash-message'>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
+    <%= flash[:notice]  %>  <%# flashの記述は消さずにそのままで良い %>
+    <%= flash[:alert] %>    <%# css、classの位置を適正な場所にすること %>
   </div>
   <div class="form-group">
+  <%= link_to image_tag("f_logo_RGB-Blue_58.png", class:"facebook-icon"), user_facebook_omniauth_authorize_path, method: :post%>
+    <%# <%= link_to image_tag("Twitter_Social_Icon_Circle_Color.png", class:"twitter-icon"), user_twitter_omniauth_authorize_path, method: :post%> 
+  <%= link_to image_tag("LINE_SOCIAL_Basic.png", class:"line-icon"), user_line_omniauth_authorize_path, method: :post%>
+  <%= link_to image_tag("btn_google_signin_light_normal_web.png", class:"google-icon"), user_google_oauth2_omniauth_authorize_path, method: :post%>
+
     <div class='form-text-wrap'>
       <label class="form-text">メールアドレス</label>
       <span class="indispensable">必須</span>
